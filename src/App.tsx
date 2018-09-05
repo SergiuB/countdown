@@ -1,11 +1,9 @@
 import * as React from "react";
 import "./App.css";
 
-import Countdown, {
-  CountdownContext,
-  IComputation
-} from "src/components/Countdown";
+import Countdown, { CountdownContext } from "src/components/Countdown";
 import CountdownElement from "src/components/CountdownElement";
+import { IComputation } from "src/lib/countdownComputations";
 
 const MonthElement = () => (
   <CountdownContext.Consumer>

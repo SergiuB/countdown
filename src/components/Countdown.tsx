@@ -1,17 +1,14 @@
 import * as React from "react";
 import CountdownElement from "src/components/CountdownElement";
-
-export interface IValue {
-  value: number;
-  remainderSec: number;
-}
-
-export type ValueComputation = (ms: number, finalDate: Date) => IValue;
-
-export interface IComputation {
-  id: string;
-  computeFn: ValueComputation;
-}
+import {
+  dayComputation,
+  hourComputation,
+  minuteComputation,
+  secondComputation,
+  IComputation,
+  IElementValues,
+  computeCountdownValues
+} from "src/lib/countdownComputations";
 
 interface ICountdownProps {
   finalDate: Date;
@@ -19,60 +16,19 @@ interface ICountdownProps {
 }
 
 interface ICountdownState {
-  delta: number;
-}
-
-interface IElementValues {
-  [key: string]: IValue;
+  deltaSec: number;
 }
 
 export const CountdownContext = React.createContext<IElementValues>({});
-
-const SECOND = 1;
-const MINUTE = 60;
-const HOUR = 60 * MINUTE;
-const DAY = 24 * HOUR;
-
-const computeDays: ValueComputation = sec => ({
-  remainderSec: Math.floor(sec % DAY),
-  value: Math.floor(sec / DAY)
-});
-
-const computeHours: ValueComputation = sec => ({
-  remainderSec: Math.floor(sec % HOUR),
-  value: Math.floor(sec / HOUR)
-});
-
-const computeMinutes: ValueComputation = sec => ({
-  remainderSec: Math.floor(sec % MINUTE),
-  value: Math.floor(sec / MINUTE)
-});
-
-const computeSeconds: ValueComputation = sec => ({
-  remainderSec: Math.floor(sec % SECOND),
-  value: Math.floor(sec / SECOND)
-});
 
 export default class Countdown extends React.PureComponent<
   ICountdownProps,
   ICountdownState
 > {
-  public static dayComputation = {
-    id: "day",
-    computeFn: computeDays
-  };
-  public static hourComputation = {
-    id: "hour",
-    computeFn: computeHours
-  };
-  public static minuteComputation = {
-    id: "minute",
-    computeFn: computeMinutes
-  };
-  public static secondComputation = {
-    id: "second",
-    computeFn: computeSeconds
-  };
+  public static dayComputation = dayComputation;
+  public static hourComputation = hourComputation;
+  public static minuteComputation = minuteComputation;
+  public static secondComputation = secondComputation;
 
   public static DayElement = () => (
     <CountdownContext.Consumer>
@@ -105,11 +61,13 @@ export default class Countdown extends React.PureComponent<
   );
 
   public state = {
-    delta: -1
+    deltaSec: -1
   };
 
   public render() {
-    const { delta } = this.state;
+    const { deltaSec } = this.state;
+
+    // By default count down days, hours, minute and seconds.
     const computations = this.props.computations || [
       Countdown.dayComputation,
       Countdown.hourComputation,
@@ -117,33 +75,18 @@ export default class Countdown extends React.PureComponent<
       Countdown.secondComputation
     ];
 
-    if (delta < 0) {
+    if (deltaSec < 0) {
       return null;
     }
 
-    const values = computations.reduce(
-      (acc, computation, index) => {
-        if (!acc.length) {
-          acc.push(computation.computeFn(delta, this.props.finalDate));
-        } else {
-          const { remainderSec } = acc[acc.length - 1];
-          acc.push(computation.computeFn(remainderSec, this.props.finalDate));
-        }
-        return acc;
-      },
-      [] as IValue[]
-    );
-
-    const elementValues = computations.reduce(
-      (acc, computation, index) => {
-        acc[computation.id] = values[index];
-        return acc;
-      },
-      {} as IElementValues
+    const countdownValues = computeCountdownValues(
+      computations,
+      deltaSec,
+      this.props.finalDate
     );
 
     return (
-      <CountdownContext.Provider value={elementValues}>
+      <CountdownContext.Provider value={countdownValues}>
         {this.props.children}
       </CountdownContext.Provider>
     );
@@ -154,10 +97,13 @@ export default class Countdown extends React.PureComponent<
   }
 
   private startCountdown() {
+    // Use a timer resolution smaller than 1 second to avoid missing a second due to timer inaccuracy.
+    // Setting state every 100ms will not cause the component to rerender after each 100ms, because it is a PureComponent
+    // and "delta" changes every second.
     setInterval(() => {
       const deltaMs = this.props.finalDate.getTime() - Date.now();
-      const delta = Math.floor(deltaMs / 1000);
-      this.setState({ delta });
+      const deltaSec = Math.floor(deltaMs / 1000);
+      this.setState({ deltaSec });
     }, 100);
   }
 }
