@@ -47,32 +47,42 @@ export default class Countdown extends React.PureComponent<
   /** Predefined computation to extract the number of seconds */
   public static secondComputation = secondComputation;
 
-  public static DayElement = () => (
+  public static DayElement = ({ label = "Days" }) => (
     <CountdownContext.Consumer>
-      {({ day }) => day !== undefined && <CountdownElement value={day.value} />}
+      {({ day }) =>
+        day !== undefined && (
+          <CountdownElement value={day.value} label={label} />
+        )
+      }
     </CountdownContext.Consumer>
   );
 
-  public static HourElement = () => (
+  public static HourElement = ({ label = "Hours" }) => (
     <CountdownContext.Consumer>
       {({ hour }) =>
-        hour !== undefined && <CountdownElement value={hour.value} />
+        hour !== undefined && (
+          <CountdownElement value={hour.value} label={label} />
+        )
       }
     </CountdownContext.Consumer>
   );
 
-  public static MinuteElement = () => (
+  public static MinuteElement = ({ label = "Minutes" }) => (
     <CountdownContext.Consumer>
       {({ minute }) =>
-        minute !== undefined && <CountdownElement value={minute.value} />
+        minute !== undefined && (
+          <CountdownElement value={minute.value} label={label} />
+        )
       }
     </CountdownContext.Consumer>
   );
 
-  public static SecondElement = () => (
+  public static SecondElement = ({ label = "Seconds" }) => (
     <CountdownContext.Consumer>
       {({ second }) =>
-        second !== undefined && <CountdownElement value={second.value} />
+        second !== undefined && (
+          <CountdownElement value={second.value} label={label} />
+        )
       }
     </CountdownContext.Consumer>
   );

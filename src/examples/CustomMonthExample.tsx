@@ -10,7 +10,9 @@ import { IExampleProps } from "src/examples/types";
 const MonthElement = () => (
   <CountdownContext.Consumer>
     {({ month }) =>
-      month !== undefined && <CountdownElement value={month.value} />
+      month !== undefined && (
+        <CountdownElement value={month.value} label="Months" />
+      )
     }
   </CountdownContext.Consumer>
 );

@@ -5,6 +5,7 @@ import BasicExample from "src/examples/BasicExample";
 import CustomMonthExample from "src/examples/CustomMonthExample";
 import SecondsOnlyExample from "src/examples/SecondsOnlyExample";
 import FunkyExample from "src/examples/FunkyExample";
+import I18nExample from "src/examples/I18nExample";
 
 class App extends React.Component {
   public render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
         <CustomMonthExample finalDate={finalDate} />
         <SecondsOnlyExample finalDate={finalDate} />
         <FunkyExample finalDate={finalDate} />
+        <I18nExample finalDate={finalDate} />
       </div>
     );
   }
