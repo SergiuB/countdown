@@ -1,5 +1,6 @@
 import * as React from "react";
 import CountdownElement from "src/components/CountdownElement";
+import CountdownComplete from "src/components/CountdownComplete";
 import {
   dayComputation,
   hourComputation,
@@ -20,6 +21,7 @@ interface ICountdownProps {
    * in addition to all the other predefined computations for days, hours, minutes and seconds.
    */
   computations?: IComputation[];
+  countdownCompleteEl?: React.ReactElement<{}>;
 }
 
 interface ICountdownState {
@@ -75,12 +77,22 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
-  public state = {
-    deltaSec: -1
-  };
+  private intervalId: any = null;
+
+  public constructor(props: ICountdownProps) {
+    super(props);
+
+    this.state = {
+      deltaSec: Math.floor((props.finalDate.getTime() - Date.now()) / 1000)
+    };
+  }
 
   public render() {
     const { deltaSec } = this.state;
+
+    const countdownCompleteEl = this.props.countdownCompleteEl || (
+      <CountdownComplete />
+    );
 
     // By default count down days, hours, minute and seconds.
     const computations = this.props.computations || [
@@ -90,8 +102,8 @@ export default class Countdown extends React.PureComponent<
       Countdown.secondComputation
     ];
 
-    if (deltaSec < 0) {
-      return null;
+    if (deltaSec <= 0) {
+      return countdownCompleteEl;
     }
 
     const countdownValues = computeCountdownValues(
@@ -111,14 +123,23 @@ export default class Countdown extends React.PureComponent<
     this.startCountdown();
   }
 
+  public componentWillUnmount() {
+    this.stopCountdown();
+  }
+
   private startCountdown() {
     // Use a timer resolution smaller than 1 second to avoid missing a second due to timer inaccuracy.
     // Setting state every 100ms will not cause the component to rerender after each 100ms, because it is a PureComponent
-    // and "delta" changes every second.
-    setInterval(() => {
-      const deltaMs = this.props.finalDate.getTime() - Date.now();
-      const deltaSec = Math.floor(deltaMs / 1000);
+    // and "deltaSec" changes every second only.
+    this.intervalId = setInterval(() => {
+      const deltaSec = Math.floor(
+        (this.props.finalDate.getTime() - Date.now()) / 1000
+      );
       this.setState({ deltaSec });
     }, 100);
+  }
+
+  private stopCountdown() {
+    clearInterval(this.intervalId);
   }
 }

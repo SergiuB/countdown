@@ -79,7 +79,7 @@ class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <Countdown finalDate={new Date(2018, 9, 6, 21, 12, 0)}>
+        <Countdown finalDate={new Date(2018, 8, 5, 22, 50, 0)}>
           <Countdown.DayElement />
           <Countdown.HourElement />
           <Countdown.MinuteElement />
