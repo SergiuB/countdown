@@ -6,12 +6,19 @@ import {
   minuteComputation,
   secondComputation,
   IComputation,
-  IElementValues,
+  ICountdownValues,
   computeCountdownValues
 } from "src/lib/countdownComputations";
 
 interface ICountdownProps {
   finalDate: Date;
+  /** A series of computations that will be applied on the remaining seconds to the final date, in order
+   * to obtain the countdown values like days, hours, minutes and so on.
+   *
+   * If ommitted, then the component will use some predefined computations for days, hours, minutes and seconds.
+   * If you wish to also show months, you need to provide your own computation to extract the number of months,
+   * in addition to all the other predefined computations for days, hours, minutes and seconds.
+   */
   computations?: IComputation[];
 }
 
@@ -19,15 +26,23 @@ interface ICountdownState {
   deltaSec: number;
 }
 
-export const CountdownContext = React.createContext<IElementValues>({});
+export const CountdownContext = React.createContext<ICountdownValues>({});
 
+/**
+ * Computes the countdown values until a specific final date (days, hours, minutes etc.) and passes them via Context API
+ * to be consumed by child components.
+ */
 export default class Countdown extends React.PureComponent<
   ICountdownProps,
   ICountdownState
 > {
+  /** Predefined computation to extract the number of days */
   public static dayComputation = dayComputation;
+  /** Predefined computation to extract the number of hours */
   public static hourComputation = hourComputation;
+  /** Predefined computation to extract the number of minutes */
   public static minuteComputation = minuteComputation;
+  /** Predefined computation to extract the number of seconds */
   public static secondComputation = secondComputation;
 
   public static DayElement = () => (
