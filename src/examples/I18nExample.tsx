@@ -5,6 +5,13 @@ import { IExampleProps } from "src/examples/types";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n"; // initialized i18next instance
 
+/**
+ * Countdown with i18n.
+ *
+ * To make the component truly reusable, it does not do i18n internally.
+ * You just have to provide the right labels/title, translated using
+ * whatever i18n system you have in the app that's rendering the component.
+ */
 export default class I18nExample extends React.PureComponent<IExampleProps> {
   public render() {
     return (

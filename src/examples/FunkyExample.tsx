@@ -3,6 +3,10 @@ import Countdown from "src/components/Countdown";
 import { IExampleProps } from "src/examples/types";
 import "./examples.css";
 
+/**
+ * Customizing the countdown elements.
+ * Thanks to the Compound Component pattern we have full control over how the countdown elements are rendered.
+ */
 export default class FunkyExample extends React.PureComponent<IExampleProps> {
   public render() {
     return (

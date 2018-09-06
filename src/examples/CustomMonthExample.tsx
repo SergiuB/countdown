@@ -18,7 +18,7 @@ const MonthElement = () => (
 
 /**
  * Custom computation for obtaining the calendar month count.
- * Out of the project scope, only to illustrate how the component
+ * It was not in the project scope, I added it only to illustrate how the component
  * can be extended with month count, without any modification.
  */
 const monthComputation: IComputation = {
@@ -84,6 +84,9 @@ const monthComputation: IComputation = {
   }
 };
 
+/**
+ * Countdown with custom month element.
+ */
 export default class CustomMonthExample extends React.PureComponent<
   IExampleProps
 > {
