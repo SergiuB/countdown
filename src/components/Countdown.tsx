@@ -30,6 +30,8 @@ interface ICountdownState {
   deltaSec: number;
 }
 
+const padOneZero = (value: number) => (value < 10 ? `0${value}` : `${value}`);
+
 export const CountdownContext = React.createContext<ICountdownValues>({});
 
 /**
@@ -73,7 +75,7 @@ export default class Countdown extends React.PureComponent<
     <CountdownContext.Consumer>
       {({ hour }) =>
         hour !== undefined && (
-          <CountdownElement value={hour.value} label={label} />
+          <CountdownElement value={padOneZero(hour.value)} label={label} />
         )
       }
     </CountdownContext.Consumer>
@@ -83,7 +85,7 @@ export default class Countdown extends React.PureComponent<
     <CountdownContext.Consumer>
       {({ minute }) =>
         minute !== undefined && (
-          <CountdownElement value={minute.value} label={label} />
+          <CountdownElement value={padOneZero(minute.value)} label={label} />
         )
       }
     </CountdownContext.Consumer>
@@ -93,7 +95,7 @@ export default class Countdown extends React.PureComponent<
     <CountdownContext.Consumer>
       {({ second }) =>
         second !== undefined && (
-          <CountdownElement value={second.value} label={label} />
+          <CountdownElement value={padOneZero(second.value)} label={label} />
         )
       }
     </CountdownContext.Consumer>
@@ -136,7 +138,7 @@ export default class Countdown extends React.PureComponent<
 
     return (
       <CountdownContext.Provider value={countdownValues}>
-        {this.props.children}
+        <div>{this.props.children}</div>
       </CountdownContext.Provider>
     );
   }

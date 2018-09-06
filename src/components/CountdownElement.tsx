@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 export interface ICountdownElementProps {
   label: string;
-  value: number;
-  padZero?: boolean;
+  value: number | string;
 }
 
 const Box = styled.div`
