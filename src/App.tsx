@@ -16,6 +16,8 @@ const ExampleContainer = styled.div`
   padding: 5px;
   display: flex;
   align-items: center;
+  width: 400px;
+  justify-content: space-between;
 `;
 
 const DateTimeContainer = styled.div`
@@ -27,6 +29,12 @@ const Input = styled.input`
 `;
 
 const padOneZero = (value: number) => (value < 10 ? `0${value}` : `${value}`);
+
+const LinkToSource = ({ url }: { url: string }) => (
+  <a target="_blank" rel="noopener" href={url}>
+    View source
+  </a>
+);
 
 class App extends React.Component {
   public state = {
@@ -58,19 +66,23 @@ class App extends React.Component {
         </DateTimeContainer>
         <ExampleContainer>
           <BasicExample finalDate={finalDate} />
-          <a href="">View source</a>
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/82235112a58eed567ea16b3679a5fabf0441d700/src/examples/BasicExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <CustomMonthExample finalDate={finalDate} />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/82235112a58eed567ea16b3679a5fabf0441d700/src/examples/CustomMonthExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <SecondsOnlyExample finalDate={finalDate} />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/82235112a58eed567ea16b3679a5fabf0441d700/src/examples/SecondsOnlyExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <FunkyExample finalDate={finalDate} />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/82235112a58eed567ea16b3679a5fabf0441d700/src/examples/FunkyExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <I18nExample finalDate={finalDate} />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/82235112a58eed567ea16b3679a5fabf0441d700/src/examples/I18nExample.tsx" />
         </ExampleContainer>
       </AppContainer>
     );
@@ -91,8 +103,6 @@ class App extends React.Component {
       finalDate.getMinutes(),
       finalDate.getSeconds()
     );
-
-    console.log(newFinalDate);
 
     this.setState({
       finalDate: newFinalDate
@@ -115,9 +125,6 @@ class App extends React.Component {
       m,
       s
     );
-
-    console.log(event.target.validity);
-    console.log(newFinalDate);
 
     this.setState({
       finalDate: newFinalDate
