@@ -1,9 +1,7 @@
 import * as i18n from "i18next";
-import * as XHR from "i18next-xhr-backend";
 import { I18nextProvider } from "react-i18next";
 
 const instance = i18n
-  .use(XHR)
   .use(I18nextProvider) // if not using I18nextProvider
   .init({
     lng: "de",

@@ -4,16 +4,13 @@
   "private": true,
   "dependencies": {
     "@types/i18next": "^8.4.5",
-    "@types/i18next-browser-languagedetector": "^2.0.1",
-    "@types/i18next-xhr-backend": "^1.4.1",
     "@types/react-i18next": "^7.8.2",
     "i18next": "^11.7.0",
-    "i18next-browser-languagedetector": "^2.2.3",
-    "i18next-xhr-backend": "^1.5.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-i18next": "^7.11.1",
-    "react-scripts-ts": "2.17.0"
+    "react-scripts-ts": "2.17.0",
+    "styled-components": "^4.0.0-beta.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
