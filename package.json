@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/i18next": "^8.4.5",
     "@types/react-i18next": "^7.8.2",
+    "@types/styled-components": "^3.0.0",
     "i18next": "^11.7.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

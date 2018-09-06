@@ -1,5 +1,7 @@
 import * as React from "react";
+import styled from "styled-components";
 import CountdownElement from "src/components/CountdownElement";
+import CountdownTitle from "src/components/CountdownTitle";
 import CountdownComplete from "src/components/CountdownComplete";
 import {
   dayComputation,
@@ -34,6 +36,12 @@ export const CountdownContext = React.createContext<ICountdownValues>({});
  * Computes the countdown values until a specific final date (days, hours, minutes etc.) and passes them via Context API
  * to be consumed by child components.
  */
+
+const HorizontalLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export default class Countdown extends React.PureComponent<
   ICountdownProps,
   ICountdownState
@@ -47,7 +55,11 @@ export default class Countdown extends React.PureComponent<
   /** Predefined computation to extract the number of seconds */
   public static secondComputation = secondComputation;
 
-  public static DayElement = ({ label = "Days" }) => (
+  public static Element = CountdownElement;
+  public static Title = CountdownTitle;
+  public static HorizontalLayout = HorizontalLayout;
+
+  public static DayElement = ({ label = "Days", padZero = false }) => (
     <CountdownContext.Consumer>
       {({ day }) =>
         day !== undefined && (
@@ -57,7 +69,7 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
-  public static HourElement = ({ label = "Hours" }) => (
+  public static HourElement = ({ label = "Hours", padZero = true }) => (
     <CountdownContext.Consumer>
       {({ hour }) =>
         hour !== undefined && (
@@ -67,7 +79,7 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
-  public static MinuteElement = ({ label = "Minutes" }) => (
+  public static MinuteElement = ({ label = "Minutes", padZero = true }) => (
     <CountdownContext.Consumer>
       {({ minute }) =>
         minute !== undefined && (
@@ -77,7 +89,7 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
-  public static SecondElement = ({ label = "Seconds" }) => (
+  public static SecondElement = ({ label = "Seconds", padZero = true }) => (
     <CountdownContext.Consumer>
       {({ second }) =>
         second !== undefined && (

@@ -9,6 +9,7 @@ const instance = i18n
     resources: {
       en: {
         translation: {
+          title: "Starts in",
           hours: "Hours",
           minutes: "Minutes",
           seconds: "Seconds",
@@ -18,6 +19,7 @@ const instance = i18n
       },
       de: {
         translation: {
+          title: "Beginnt in",
           hours: "Stunden",
           minutes: "Minuten",
           seconds: "Seconden",

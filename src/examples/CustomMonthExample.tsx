@@ -1,6 +1,5 @@
 import * as React from "react";
 import Countdown, { CountdownContext } from "src/components/Countdown";
-import CountdownElement from "src/components/CountdownElement";
 import { IComputation } from "src/lib/countdownComputations";
 import { IExampleProps } from "src/examples/types";
 
@@ -11,7 +10,7 @@ const MonthElement = () => (
   <CountdownContext.Consumer>
     {({ month }) =>
       month !== undefined && (
-        <CountdownElement value={month.value} label="Months" />
+        <Countdown.Element value={month.value} label="Months" />
       )
     }
   </CountdownContext.Consumer>
@@ -100,11 +99,14 @@ export default class CustomMonthExample extends React.PureComponent<
           Countdown.secondComputation
         ]}
       >
-        <MonthElement />
-        <Countdown.DayElement />
-        <Countdown.HourElement />
-        <Countdown.MinuteElement />
-        <Countdown.SecondElement />
+        <Countdown.Title />
+        <Countdown.HorizontalLayout>
+          <MonthElement />
+          <Countdown.DayElement />
+          <Countdown.HourElement />
+          <Countdown.MinuteElement />
+          <Countdown.SecondElement />
+        </Countdown.HorizontalLayout>
       </Countdown>
     );
   }

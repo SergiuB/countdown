@@ -149,6 +149,13 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/styled-components@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-3.0.0.tgz#d371e762802e199ecd7bb8ab8298696475ce19dc"
+  dependencies:
+    "@types/node" "*"
+    "@types/react" "*"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
