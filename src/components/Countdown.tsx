@@ -1,8 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import CountdownElement from "src/components/CountdownElement";
-import CountdownTitle from "src/components/CountdownTitle";
-import CountdownComplete from "src/components/CountdownComplete";
+import CountdownElement from "./CountdownElement";
+import CountdownTitle from "./CountdownTitle";
+import CountdownComplete from "./CountdownComplete";
 import {
   dayComputation,
   hourComputation,
@@ -11,7 +11,7 @@ import {
   IComputation,
   ICountdownValues,
   computeCountdownValues
-} from "src/lib/countdownComputations";
+} from "./countdownComputations";
 
 interface ICountdownProps {
   finalDate: Date;

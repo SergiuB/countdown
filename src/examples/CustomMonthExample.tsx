@@ -1,6 +1,6 @@
 import * as React from "react";
 import Countdown, { CountdownContext } from "src/components/Countdown";
-import { IComputation } from "src/lib/countdownComputations";
+import { IComputation } from "src/components/countdownComputations";
 import { IExampleProps } from "src/examples/types";
 
 /**
