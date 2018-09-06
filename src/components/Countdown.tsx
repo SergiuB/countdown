@@ -15,6 +15,7 @@ import {
 
 interface ICountdownProps {
   finalDate: Date;
+  title?: string;
   /** A series of computations that will be applied on the remaining seconds to the final date, in order
    * to obtain the countdown values like days, hours, minutes and so on.
    *
@@ -43,6 +44,18 @@ const HorizontalLayout = styled.div`
   display: flex;
   flex-direction: row;
 `;
+const VerticalLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+// By default count down days, hours, minute and seconds.
+const defaultComputations = [
+  dayComputation,
+  hourComputation,
+  minuteComputation,
+  secondComputation
+];
 
 export default class Countdown extends React.PureComponent<
   ICountdownProps,
@@ -58,9 +71,8 @@ export default class Countdown extends React.PureComponent<
   public static secondComputation = secondComputation;
 
   public static Element = CountdownElement;
-  public static Title = CountdownTitle;
-  public static HorizontalLayout = HorizontalLayout;
 
+  /** Predefined element for days */
   public static DayElement = ({ label = "Days", padZero = false }) => (
     <CountdownContext.Consumer>
       {({ day }) =>
@@ -71,6 +83,7 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
+  /** Predefined element for hours */
   public static HourElement = ({ label = "Hours", padZero = true }) => (
     <CountdownContext.Consumer>
       {({ hour }) =>
@@ -81,6 +94,7 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
+  /** Predefined element for min */
   public static MinuteElement = ({ label = "Minutes", padZero = true }) => (
     <CountdownContext.Consumer>
       {({ minute }) =>
@@ -91,6 +105,7 @@ export default class Countdown extends React.PureComponent<
     </CountdownContext.Consumer>
   );
 
+  /** Predefined element for sec */
   public static SecondElement = ({ label = "Seconds", padZero = true }) => (
     <CountdownContext.Consumer>
       {({ second }) =>
@@ -113,18 +128,13 @@ export default class Countdown extends React.PureComponent<
 
   public render() {
     const { deltaSec } = this.state;
-
-    const countdownCompleteEl = this.props.countdownCompleteEl || (
-      <CountdownComplete />
-    );
-
-    // By default count down days, hours, minute and seconds.
-    const computations = this.props.computations || [
-      Countdown.dayComputation,
-      Countdown.hourComputation,
-      Countdown.minuteComputation,
-      Countdown.secondComputation
-    ];
+    const {
+      title = "Starts in",
+      computations = defaultComputations,
+      countdownCompleteEl = <CountdownComplete />,
+      finalDate,
+      children
+    } = this.props;
 
     if (deltaSec <= 0) {
       return countdownCompleteEl;
@@ -133,12 +143,15 @@ export default class Countdown extends React.PureComponent<
     const countdownValues = computeCountdownValues(
       computations,
       deltaSec,
-      this.props.finalDate
+      finalDate
     );
 
     return (
       <CountdownContext.Provider value={countdownValues}>
-        <div>{this.props.children}</div>
+        <VerticalLayout>
+          {title && <CountdownTitle title={title} />}
+          <HorizontalLayout>{children}</HorizontalLayout>
+        </VerticalLayout>
       </CountdownContext.Provider>
     );
   }

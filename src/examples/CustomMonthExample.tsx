@@ -102,14 +102,11 @@ export default class CustomMonthExample extends React.PureComponent<
           Countdown.secondComputation
         ]}
       >
-        <Countdown.Title />
-        <Countdown.HorizontalLayout>
-          <MonthElement />
-          <Countdown.DayElement />
-          <Countdown.HourElement />
-          <Countdown.MinuteElement />
-          <Countdown.SecondElement />
-        </Countdown.HorizontalLayout>
+        <MonthElement />
+        <Countdown.DayElement />
+        <Countdown.HourElement />
+        <Countdown.MinuteElement />
+        <Countdown.SecondElement />
       </Countdown>
     );
   }

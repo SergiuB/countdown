@@ -14,10 +14,7 @@ export default class SecondsOnlyExample extends React.PureComponent<
         finalDate={this.props.finalDate}
         computations={[Countdown.secondComputation]}
       >
-        <Countdown.Title />
-        <Countdown.HorizontalLayout>
-          <Countdown.SecondElement />
-        </Countdown.HorizontalLayout>
+        <Countdown.SecondElement />
       </Countdown>
     );
   }

@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 export interface ICountdownTitleProps {
-  title?: string;
+  title: string;
 }
 
 const Title = styled.p`
@@ -15,6 +15,6 @@ export default class CountdownTitle extends React.PureComponent<
   ICountdownTitleProps
 > {
   public render() {
-    return <Title>{this.props.title || "Starts in"}</Title>;
+    return <Title>{this.props.title}</Title>;
   }
 }

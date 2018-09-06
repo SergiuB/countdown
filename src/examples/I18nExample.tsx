@@ -18,14 +18,11 @@ export default class I18nExample extends React.PureComponent<IExampleProps> {
       <I18nextProvider i18n={i18n}>
         <I18n>
           {t => (
-            <Countdown finalDate={this.props.finalDate}>
-              <Countdown.Title title={t("title")} />
-              <Countdown.HorizontalLayout>
-                <Countdown.DayElement label={t("days")} />
-                <Countdown.HourElement label={t("hours")} />
-                <Countdown.MinuteElement label={t("minutes")} />
-                <Countdown.SecondElement label={t("seconds")} />
-              </Countdown.HorizontalLayout>
+            <Countdown finalDate={this.props.finalDate} title={t("title")}>
+              <Countdown.DayElement label={t("days")} />
+              <Countdown.HourElement label={t("hours")} />
+              <Countdown.MinuteElement label={t("minutes")} />
+              <Countdown.SecondElement label={t("seconds")} />
             </Countdown>
           )}
         </I18n>

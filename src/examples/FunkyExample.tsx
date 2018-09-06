@@ -14,15 +14,12 @@ export default class FunkyExample extends React.PureComponent<IExampleProps> {
         finalDate={this.props.finalDate}
         computations={[Countdown.dayComputation, Countdown.hourComputation]}
       >
-        <Countdown.Title />
-        <Countdown.HorizontalLayout>
-          <div className="spin-right">
-            <Countdown.DayElement />
-          </div>
-          <div className="spin-left">
-            <Countdown.HourElement />
-          </div>
-        </Countdown.HorizontalLayout>
+        <div className="spin-right">
+          <Countdown.DayElement />
+        </div>
+        <div className="spin-left">
+          <Countdown.HourElement />
+        </div>
       </Countdown>
     );
   }
