@@ -1,7 +1,39 @@
 import * as React from "react";
 import Countdown from "src/Countdown";
 import { IExampleProps } from "src/examples/types";
-import "./examples.css";
+import styled, { keyframes } from "styled-components";
+
+const leftSpin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const rightSpin = keyframes`
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+`;
+
+const AnimatedDiv = styled.div`
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+`;
+
+const SpinRight = styled(AnimatedDiv)`
+  animation-name: ${rightSpin};
+`;
+
+const SpinLeft = styled(AnimatedDiv)`
+  animation-name: ${leftSpin};
+`;
 
 /**
  * Customizing the countdown elements.
@@ -14,12 +46,12 @@ export default class FunkyExample extends React.PureComponent<IExampleProps> {
         finalDate={this.props.finalDate}
         computations={[Countdown.dayComputation, Countdown.hourComputation]}
       >
-        <div className="spin-right">
+        <SpinRight>
           <Countdown.DayElement />
-        </div>
-        <div className="spin-left">
+        </SpinRight>
+        <SpinLeft>
           <Countdown.HourElement />
-        </div>
+        </SpinLeft>
       </Countdown>
     );
   }
