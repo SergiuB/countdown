@@ -30,3 +30,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
+
+### `yarn analyze`
+
+Uses [Source Map Explorer](https://www.npmjs.com/package/source-map-explorer) to understand where code bloat is coming from.
+Need to run `yarn build` first.
