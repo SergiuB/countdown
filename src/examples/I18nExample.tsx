@@ -1,6 +1,6 @@
 import * as React from "react";
 import { I18n } from "react-i18next";
-import Countdown from "src/components/Countdown";
+import Countdown from "src/Countdown";
 import { IExampleProps } from "src/examples/types";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n"; // initialized i18next instance

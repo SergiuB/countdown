@@ -1,19 +1,18 @@
 import * as React from "react";
-import Countdown, { CountdownContext } from "src/components/Countdown";
-import { IComputation } from "src/components/countdownComputations";
+import Countdown, { ICountdownComputation } from "src/Countdown";
 import { IExampleProps } from "src/examples/types";
 
 /**
  * Custom countdown element to display remaining months.
  */
 const MonthElement = () => (
-  <CountdownContext.Consumer>
+  <Countdown.Context.Consumer>
     {({ month }) =>
       month !== undefined && (
         <Countdown.Element value={month.value} label="Months" />
       )
     }
-  </CountdownContext.Consumer>
+  </Countdown.Context.Consumer>
 );
 
 /**
@@ -21,7 +20,7 @@ const MonthElement = () => (
  * It was not in the project scope, I added it only to illustrate how the component
  * can be extended with month count, without any modification.
  */
-const monthComputation: IComputation = {
+const monthComputation: ICountdownComputation = {
   id: "month",
   computeFn: (sec, finalDate) => {
     const startDate = new Date(finalDate.getTime() - sec * 1000);

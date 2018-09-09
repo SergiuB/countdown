@@ -1,5 +1,5 @@
 import * as React from "react";
-import Countdown from "src/components/Countdown";
+import Countdown from "src/Countdown";
 import { IExampleProps } from "src/examples/types";
 
 /**

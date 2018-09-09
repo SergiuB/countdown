@@ -12,7 +12,7 @@ export type ValueComputation = (
   finalDate: Date
 ) => IValue;
 
-export interface IComputation {
+export interface ICountdownComputation {
   id: string;
   computeFn: ValueComputation;
 }
@@ -21,7 +21,7 @@ export interface ICountdownValues {
   [key: string]: IValue;
 }
 
-export const dayComputation: IComputation = {
+export const dayComputation: ICountdownComputation = {
   id: "day",
   computeFn: secToFinalDate => ({
     remainderSec: Math.floor(secToFinalDate % DAY),
@@ -29,7 +29,7 @@ export const dayComputation: IComputation = {
   })
 };
 
-export const hourComputation: IComputation = {
+export const hourComputation: ICountdownComputation = {
   id: "hour",
   computeFn: secToFinalDate => ({
     remainderSec: Math.floor(secToFinalDate % HOUR),
@@ -37,7 +37,7 @@ export const hourComputation: IComputation = {
   })
 };
 
-export const minuteComputation: IComputation = {
+export const minuteComputation: ICountdownComputation = {
   id: "minute",
   computeFn: secToFinalDate => ({
     remainderSec: Math.floor(secToFinalDate % MINUTE),
@@ -45,7 +45,7 @@ export const minuteComputation: IComputation = {
   })
 };
 
-export const secondComputation: IComputation = {
+export const secondComputation: ICountdownComputation = {
   id: "second",
   computeFn: secToFinalDate => ({
     remainderSec: 0,
@@ -68,7 +68,7 @@ export const secondComputation: IComputation = {
  * @param finalDate Final date of the countdown
  */
 export const computeCountdownValues = (
-  computations: IComputation[],
+  computations: ICountdownComputation[],
   deltaSec: number,
   finalDate: Date
 ) => {

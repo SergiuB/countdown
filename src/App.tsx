@@ -66,23 +66,23 @@ class App extends React.Component {
         </DateTimeContainer>
         <ExampleContainer>
           <BasicExample finalDate={finalDate} />
-          <LinkToSource url="https://github.com/SergiuB/countdown/blob/35513b13a7aa2157556e822bcb598eac8a006baf/src/examples/BasicExample.tsx" />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/master/src/examples/BasicExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <CustomMonthExample finalDate={finalDate} />
-          <LinkToSource url="https://github.com/SergiuB/countdown/blob/35513b13a7aa2157556e822bcb598eac8a006baf/src/examples/CustomMonthExample.tsx" />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/master/src/examples/CustomMonthExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <SecondsOnlyExample finalDate={finalDate} />
-          <LinkToSource url="https://github.com/SergiuB/countdown/blob/35513b13a7aa2157556e822bcb598eac8a006baf/src/examples/SecondsOnlyExample.tsx" />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/master/src/examples/SecondsOnlyExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <FunkyExample finalDate={finalDate} />
-          <LinkToSource url="https://github.com/SergiuB/countdown/blob/35513b13a7aa2157556e822bcb598eac8a006baf/src/examples/FunkyExample.tsx" />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/master/src/examples/FunkyExample.tsx" />
         </ExampleContainer>
         <ExampleContainer>
           <I18nExample finalDate={finalDate} />
-          <LinkToSource url="https://github.com/SergiuB/countdown/blob/35513b13a7aa2157556e822bcb598eac8a006baf/src/examples/I18nExample.tsx" />
+          <LinkToSource url="https://github.com/SergiuB/countdown/blob/master/src/examples/I18nExample.tsx" />
         </ExampleContainer>
       </AppContainer>
     );

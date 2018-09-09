@@ -1,6 +1,6 @@
 import * as React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import Countdown, { CountdownContext } from "./Countdown";
+import Countdown from "./Countdown";
 import CountdownComplete from "./CountdownComplete";
 
 jest.useFakeTimers();
@@ -22,14 +22,14 @@ describe("Countdown", () => {
   });
   it("computes days, hours, minutes and seconds until final date", () => {
     // exactly 1 DAY until final date
-    expect(wrapper.find(CountdownContext.Provider).props().value).toMatchObject(
-      {
-        day: { remainderSec: 0, value: 1 },
-        hour: { remainderSec: 0, value: 0 },
-        minute: { remainderSec: 0, value: 0 },
-        second: { remainderSec: 0, value: 0 }
-      }
-    );
+    expect(
+      wrapper.find(Countdown.Context.Provider).props().value
+    ).toMatchObject({
+      day: { remainderSec: 0, value: 1 },
+      hour: { remainderSec: 0, value: 0 },
+      minute: { remainderSec: 0, value: 0 },
+      second: { remainderSec: 0, value: 0 }
+    });
   });
 
   it("updates the days, hours, minutes and seconds until final date after time elapses", () => {
@@ -44,14 +44,14 @@ describe("Countdown", () => {
     wrapper.update();
 
     // Now there are 0 days, 22 hours, 57 minutes, 57 seconds until final date
-    expect(wrapper.find(CountdownContext.Provider).props().value).toMatchObject(
-      {
-        day: { remainderSec: 82677, value: 0 },
-        hour: { remainderSec: 3477, value: 22 },
-        minute: { remainderSec: 57, value: 57 },
-        second: { remainderSec: 0, value: 57 }
-      }
-    );
+    expect(
+      wrapper.find(Countdown.Context.Provider).props().value
+    ).toMatchObject({
+      day: { remainderSec: 82677, value: 0 },
+      hour: { remainderSec: 3477, value: 22 },
+      minute: { remainderSec: 57, value: 57 },
+      second: { remainderSec: 0, value: 57 }
+    });
   });
 
   it("renders a CountdownComplete after time elapses", () => {
